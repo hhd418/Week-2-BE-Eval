@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'rspec'
+require 'pry'
 require_relative '../tennis'
 
 describe Tennis::Game do
@@ -38,6 +39,7 @@ describe Tennis::Player do
   let(:player) do
     player = Tennis::Player.new
     player.opponent = Tennis::Player.new
+    player.opponent.opponent = player
 
     return player
   end
@@ -88,13 +90,16 @@ describe Tennis::Player do
     end
 
     context 'when points is 3 to 3' do
-      it 'return duece' do
+      it 'returns duece' do
         player.points = 3
         player.opponent.points = 3
+
+        # binding.pry
 
         expect(player.score).to eq('duece')
         expect(player.opponent.score).to eq('duece')
       end
     end
+
   end
 end
