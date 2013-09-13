@@ -51,6 +51,9 @@ describe Tennis::Player do
     it 'sets the games_won to 0' do
       expect(player.games_won).to eq(0)
     end
+    it 'set the sets_won to 0' do
+      expect(player.sets_won).to eq(0)
+    end
   end
 
   describe '#record_won_ball!' do
