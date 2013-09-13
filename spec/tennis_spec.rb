@@ -122,5 +122,14 @@ describe Tennis::Player do
       end
     end
 
+    context 'when a player wins a game' do
+      it 'increases games_won by 1' do
+        player.points = 4
+        player.opponent.points = 2
+
+        expect(player.games_won).to eq(1)
+      end
+    end
+
   end
 end
