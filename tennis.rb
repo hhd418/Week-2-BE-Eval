@@ -53,6 +53,7 @@ module Tennis
       return 'forty' if @points == 3
       if @points == 4 
         if @opponent.points < 3
+          @games_won += 1
           return 'win'
         elsif @opponent.points == 3
           @points -= 1

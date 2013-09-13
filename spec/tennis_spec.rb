@@ -127,6 +127,7 @@ describe Tennis::Player do
         player.points = 4
         player.opponent.points = 2
 
+        player.score
         expect(player.games_won).to eq(1)
       end
     end
