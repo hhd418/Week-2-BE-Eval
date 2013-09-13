@@ -104,7 +104,7 @@ describe Tennis::Player do
     context 'when points is 4 to 3' do
       it 'returns advantage' do
         player.points = 4
-        player.opponent.points = 4
+        player.opponent.points = 3
 
         expect(player.score).to eq('advantage')
       end
