@@ -24,6 +24,7 @@ module Tennis
         @player2.record_won_ball!
       else
         puts 'No scored was recored. Please enter a vaild player number.'
+        return false
       end
     end
   end

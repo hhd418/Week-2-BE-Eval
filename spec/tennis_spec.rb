@@ -19,10 +19,17 @@ describe Tennis::Game do
   end
 
   describe '#wins_ball' do
-    it 'increments the points of the winning player' do
-      game.wins_ball(1)
+    context 'a player wins the point' do
+      it 'increments his points' do
+        game.wins_ball(1)
 
-      expect(game.player1.points).to eq(1)
+        expect(game.player1.points).to eq(1)
+      end
+      it 'only allows valid players to record a point' do
+        game.wins_ball(3)
+
+        expect(game.wins_ball(3)).to eq(false)
+      end
     end
   end
 end
