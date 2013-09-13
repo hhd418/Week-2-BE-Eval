@@ -30,10 +30,11 @@ module Tennis
   end
 
   class Player
-    attr_accessor :points, :opponent
+    attr_accessor :points, :opponent, :games_won
 
     def initialize
       @points = 0
+      @games_won = 0
     end
 
     # Increments the score by 1.
