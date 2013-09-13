@@ -135,8 +135,10 @@ describe Tennis::Player do
 
     context 'when a player wins a set 6 to 4 or better' do
       it 'increases sets_won by 1' do
-        player.games_won = 6
+        player.games_won = 5
         player.opponent.games_won = 4
+        player.points = 4
+        player.opponent.points = 2
 
         player.score
         expect(player.sets_won).to eq(1)
