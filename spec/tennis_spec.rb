@@ -120,6 +120,8 @@ describe Tennis::Player do
         player.opponent.points = 2
 
         expect(player.score).to eq('win')
+        expect(player.points).to eq(0)
+        expect(player.opponent.points).to eq(0)
       end
     end
 
@@ -130,6 +132,8 @@ describe Tennis::Player do
 
         player.score
         expect(player.games_won).to eq(1)
+        expect(player.points).to eq(0)
+        expect(player.opponent.points).to eq(0)
       end
     end
 
@@ -172,6 +176,22 @@ describe Tennis::Player do
         expect(player.sets_won).to eq(1)
         expect(player.games_won).to eq(0)
         expect(player.opponent.games_won).to eq(0)
+      end
+    end
+
+    context 'when a player wins 3 sets' do
+      it 'increases match won to 1' do
+        player.sets_won = 2
+        player.opponent.sets_won = 2
+        player.games_won = 6
+        player.opponent.games_won = 6
+        player.points = 4
+        player.opponent.points = 2
+
+        player.score
+        expect(player.match_won).to eq(1)
+        expect(player.sets_won).to eq(0)
+        expect(player.opponent.sets_won).to eq(0)
       end
     end
 

@@ -30,12 +30,13 @@ module Tennis
   end
 
   class Player
-    attr_accessor :points, :opponent, :games_won, :sets_won
+    attr_accessor :points, :opponent, :games_won, :sets_won, :match_won
 
     def initialize
       @points = 0
       @games_won = 0
       @sets_won = 0
+      @match_won = 1
     end
 
     # Increments the score by 1.
@@ -55,7 +56,10 @@ module Tennis
       if @points == 4 
         if @opponent.points < 3
           @games_won += 1
+          @points = 0
+          @opponent.points = 0
           set_won?
+          match_won?
           return 'win'
         elsif @opponent.points == 3
           @points -= 1
@@ -71,6 +75,8 @@ module Tennis
 
     private
 
+    # Will be called whenever a game has been won and checks to see if a set has been won.
+    # Sets can be won 6 to 4 or better or 7 to 6 or 7 to 5.
     def set_won?
       if @games_won == 6 && @opponent.games_won < 5
         @sets_won += 1
@@ -82,6 +88,20 @@ module Tennis
         @games_won = 0
         @opponent.games_won = 0
       end
+    end
+
+    def match_won?
+      if @sets_won == 3
+        @match_won = 1
+        @sets_won = 0
+        @opponent.sets_won = 0
+      end
+      if @opponent.sets_won == 3
+        @match_won = 1
+        @sets_won = 0
+        @opponent.sets_won = 0
+      end
+
     end
 
   end
