@@ -55,9 +55,7 @@ module Tennis
       if @points == 4 
         if @opponent.points < 3
           @games_won += 1
-          if @games_won == 6 && @opponent.games_won < 5
-            @sets_won += 1
-          end
+          set_won?
           return 'win'
         elsif @opponent.points == 3
           @points -= 1
@@ -69,7 +67,22 @@ module Tennis
           return 'duece'
         end
       end
-      
     end
+
+    private
+
+    def set_won?
+      if @games_won == 6 && @opponent.games_won < 5
+        @sets_won += 1
+        @games_won = 0
+        @opponent.games_won = 0
+      end
+      if @games_won == 7 && @opponent.games_won < 7
+        @sets_won += 1
+        @games_won = 0
+        @opponent.games_won = 0
+      end
+    end
+
   end
 end

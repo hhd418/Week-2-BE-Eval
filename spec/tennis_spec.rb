@@ -134,7 +134,7 @@ describe Tennis::Player do
     end
 
     context 'when a player wins a set 6 to 4 or better' do
-      it 'increases sets_won by 1' do
+      it 'increases sets_won by 1 and games_won is reset' do
         player.games_won = 5
         player.opponent.games_won = 4
         player.points = 4
@@ -142,6 +142,36 @@ describe Tennis::Player do
 
         player.score
         expect(player.sets_won).to eq(1)
+        expect(player.games_won).to eq(0)
+        expect(player.opponent.games_won).to eq(0)
+      end
+    end
+
+    context 'when a palyer wins a set 7 to 5' do
+      it 'increases sets_won by 1' do
+        player.games_won = 6
+        player.opponent.games_won = 5
+        player.points = 4
+        player.opponent.points = 2
+
+        player.score
+        expect(player.sets_won).to eq(1)
+        expect(player.games_won).to eq(0)
+        expect(player.opponent.games_won).to eq(0)
+      end
+    end
+
+    context 'when a palyer wins a set 7 to 6' do
+      it 'increases sets_won by 1' do
+        player.games_won = 6
+        player.opponent.games_won = 6
+        player.points = 4
+        player.opponent.points = 2
+
+        player.score
+        expect(player.sets_won).to eq(1)
+        expect(player.games_won).to eq(0)
+        expect(player.opponent.games_won).to eq(0)
       end
     end
 
