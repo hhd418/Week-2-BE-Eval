@@ -46,6 +46,7 @@ module Tennis
     # Returns the String score for the player.
     def score
       return 'love' if @points == 0
+      return 'fifteen' if @points == 1
     end
   end
 end
