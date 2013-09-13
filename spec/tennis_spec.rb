@@ -80,7 +80,11 @@ describe Tennis::Player do
     end
     
     context 'when points is 3' do
-      it 'returns forty' 
+      it 'returns forty' do
+        player.points = 3
+
+        expect(player.score).to eq('forty')
+      end
     end
   end
 end
