@@ -9,6 +9,23 @@ module Tennis
       @player1.opponent = @player2
       @player2.opponent = @player1
     end
+
+    # The wins_ball method takes an argument of 1 or 2 to reference the player that won the point.
+    # If an invalid player number is entered the score will not be recorded.
+    # 
+    # Example
+    #
+    #    game.wins_ball(2)
+    #    the record_won_ball! method will record and add a point to @player2
+    def wins_ball(x)
+      if x == 1
+        @player1.record_won_ball!
+      elsif x == 2
+        @player2.record_won_ball!
+      else
+        puts 'No scored was recored. Please enter a vaild player number.'
+      end
+    end
   end
 
   class Player
